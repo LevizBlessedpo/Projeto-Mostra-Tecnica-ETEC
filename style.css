@@ -53,19 +53,10 @@ body {
     box-shadow: 0 0 20px var(--neon-verde), 0 0 40px var(--neon-verde);
 }
 
-.ESP32foto {
+.ESP32foto, .Relé {
     max-width: 400px;
     height: 230px;
-    margin: 10gap;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 0 15px var(--neon-verde);
-}
-
-.Relé {
-    max-width: 400px;
-    height: 230px;
-    margin: 10gap;
+    margin: 20px 0 40px 0;
     display: block;
     border-radius: 8px;
     box-shadow: 0 0 15px var(--neon-verde);
