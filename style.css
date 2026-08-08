@@ -31,6 +31,22 @@ body {
     box-shadow: 0 0 10px var(--neon-verde);
 }
 
+.botao-cta {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 40px auto;
+    padding: 12px 28px;
+    border: 2px solid var(--neon-verde);
+    border-radius: 30px;
+    color: var(--neon-verde);
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--neon-verde);
+    box-shadow: 0 0 10px var(--neon-verde);
+    transition: 0.3s;
+}
+
 .ESP32foto {
     max-width: 400px;
     height: 230px;
