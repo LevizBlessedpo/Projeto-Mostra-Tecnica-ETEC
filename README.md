@@ -12,7 +12,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 <br>
-(Criado com a ajuda de: n0x-503)
+> (Criado com a ajuda de: n0x-503)
 
 <br>
 
