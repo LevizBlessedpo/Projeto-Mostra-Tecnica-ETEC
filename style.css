@@ -19,3 +19,14 @@ body {
     color: var(--texto);
     font-family: 'Segoe UI', sans-serif;
 }
+
+.logo-etec {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    max-width: none;
+    margin: 0 auto 50 px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--neon-verde);
+}
