@@ -5,4 +5,17 @@
     --neon-verde-claro: #7fff7f;
     --texto: #e4e4e7;
     --texto-secundario: #71717a;
+    padding: 20gap;
+}
+
+#Nome-do-Projeto {
+    text-align: center;
+    color: var(--neon-verde);
+    text-shadow: 0 0 5px var(--neon-verde), 0 0 20px var(--neon-verde);
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto);
+    font-family: 'Segoe UI', sans-serif;
 }
