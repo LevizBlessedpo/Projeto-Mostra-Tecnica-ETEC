@@ -47,6 +47,12 @@ body {
     transition: 0.3s;
 }
 
+.botao-cta:hover {
+    background-color: var(--neon-verde);
+    color: var(--bg-principal);
+    box-shadow: 0 0 20px var(--neon-verde), 0 0 40px var(--neon-verde);
+}
+
 .ESP32foto {
     max-width: 400px;
     height: 230px;
