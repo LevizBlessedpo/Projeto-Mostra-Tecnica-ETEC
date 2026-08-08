@@ -30,3 +30,11 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px var(--neon-verde);
 }
+
+.ESP32foto {
+    max-width: 400px;
+    height: 230px;
+    margin: 10gap;
+    display: block;
+    box-shadow: 0 0 10px var(--neon-verde);
+}
