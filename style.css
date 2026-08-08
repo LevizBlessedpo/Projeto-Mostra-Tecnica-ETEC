@@ -68,7 +68,7 @@ body {
     padding-left: 12px;
 }
 
-#TecnologiasUtilizadas, h2, .Item1, .Item2{
+#ComponentesUtilizados, h2, .Item1, .Item2{
     color: var(--neon-verde-claro);
     border-left: 3px solid var(--neon-verde);
     padding-left: 12px;
