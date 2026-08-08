@@ -36,5 +36,27 @@ body {
     height: 230px;
     margin: 10gap;
     display: block;
-    box-shadow: 0 0 10px var(--neon-verde);
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--neon-verde);
+}
+
+.Relé {
+    max-width: 400px;
+    height: 230px;
+    margin: 10gap;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--neon-verde);
+}
+
+#div1 {
+    color: var(--neon-verde-claro);
+    border-left: 3px solid var(--neon-verde);
+    padding-left: 12px;
+}
+
+#TecnologiasUtilizadas, h2, .Item1, .Item2{
+    color: var(--neon-verde-claro);
+    border-left: 3px solid var(--neon-verde);
+    padding-left: 12px;
 }
