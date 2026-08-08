@@ -5,4 +5,28 @@
     --neon-verde-claro: #7fff7f;
     --texto: #e4e4e7;
     --texto-secundario: #71717a;
+    padding: 20gap;
+}
+
+#Nome-do-Projeto {
+    text-align: center;
+    color: var(--neon-verde);
+    text-shadow: 0 0 5px var(--neon-verde), 0 0 20px var(--neon-verde);
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.logo-etec {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    max-width: none;
+    margin: 0 auto 50 px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--neon-verde);
 }
