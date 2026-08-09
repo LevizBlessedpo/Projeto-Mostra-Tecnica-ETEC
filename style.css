@@ -63,13 +63,20 @@ body {
     box-shadow: 0 0 15px var(--neon-verde);
 }
 
-#div1 {
+.div1 {
     color: var(--neon-verde-claro);
     border-left: 3px solid var(--neon-verde);
     padding-left: 12px;
 }
 
-#ComponentesUtilizados, h2, .Item1, .Item2{
+.Apresentação-membros {
+    color: var(--neon-verde-claro);
+    border-left: 3px solid var(--neon-verde);
+    padding-left: 12px;
+    text-align: center;
+}
+
+.Componentes-utilizados, h2, .Item1, .Item2{
     color: var(--neon-verde-claro);
     border-left: 3px solid var(--neon-verde);
     padding-left: 12px;
