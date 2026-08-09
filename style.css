@@ -3,6 +3,7 @@
     --bg-cards: #12121a;
     --neon-verde: #39ff14;
     --neon-verde-claro: #7fff7f;
+    --neon-vermelho-claro: red; 
     --texto: #e4e4e7;
     --texto-secundario: #71717a;
     padding: 20gap;
@@ -96,15 +97,15 @@ body {
     height: 80px;
     border-radius: 50%;
     background-color: var(--bg-cards);
-    border: 2px solid var(--neon-verde);
-    box-shadow: 0 0 10px var(--neon-verde);
+    border: 2px solid var(--neon-vermelho-claro);
+    box-shadow: 0 0 10px var(--neon-vermelho-claro);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 32px;
     font-weight: bold;
-    color: var(--neon-verde);
-    text-shadow: 0 0 5px var(--neon-verde);
+    color: var(--neon-vermelho-claro);
+    text-shadow: 0 0 5px var(--neon-vermelho-claro);
     margin: 0 auto 15px auto;
 }
 
