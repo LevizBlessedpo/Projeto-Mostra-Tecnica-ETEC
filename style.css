@@ -109,6 +109,23 @@ body {
     margin: 0 auto 15px auto;
 }
 
+.AvatarRyan {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--bg-cards);
+    border: 2px solid var(--neon-vermelho-claro);
+    box-shadow: 0 0 10px var(--neon-vermelho-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--neon-vermelho-claro);
+    text-shadow: 0 0 5px var(--neon-vermelho-claro);
+    margin: 0 auto 15px auto;
+}
+
 .Card-membro {
     text-align: center;
 }
