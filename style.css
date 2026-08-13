@@ -1,157 +1,316 @@
 :root {
-    --bg-principal: #fdfaf6;
-    --bg-cards: #ffffff;
-    --cor-primaria: #ec3750;
-    --cor-primaria-clara: #ff8c37;
-    --texto: #1e1e1e;
-    --texto-secundario: #5a5a5a;
-    --borda: #1e1e1e;
+    --bg-principal: #05070d;
+    --bg-cards: #0d1220;
+    --neon-ciano: #00f0ff;
+    --neon-ciano-claro: #7cf9ff;
+    --neon-roxo: #b026ff;
+    --texto: #e4e4e7;
+    --texto-secundario: #8b93a7;
+    --borda: #1a2332;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--bg-principal);
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba(236, 55, 80, 0.03),
-        rgba(236, 55, 80, 0.03) 10px,
-        transparent 10px,
-        transparent 20px
-    );
-    background-size: 200% 200%;
-    animation: ondas 30s linear infinite;
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0 20px;
+    overflow-x: hidden;
+    position: relative;
+    background-image:
+        linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-@keyframes ondas {
-    from { background-position: 0 0; }
-    to { background-position: 100% 100%; }
+body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.12), transparent 70%);
+    filter: blur(40px);
+    z-index: -1;
+    animation: pulsar 12s ease-in-out infinite;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(176, 38, 255, 0.10), transparent 70%);
+    filter: blur(40px);
+    z-index: -1;
+    animation: pulsar 12s ease-in-out infinite reverse;
+}
+
+@keyframes pulsar {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 1; }
 }
 
 #Nome-do-Projeto {
     text-align: center;
-    color: var(--texto);
-    font-size: 2.5rem;
-    font-weight: 800;
+    color: var(--neon-ciano);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
     margin: 40px auto 20px auto;
-    max-width: 800px;
-    text-shadow: none;
+    max-width: 900px;
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.acordeon {
+    border-bottom: 1px solid var(--borda);
+    padding: 15px 0;
+}
+
+.acordeon:last-child {
+    border-bottom: none;
+}
+
+.acordeon summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.acordeon summary::-webkit-details-marker {
+    display: none;
+}
+
+.acordeon summary::after {
+    content: "▶";
+    color: var(--neon-ciano);
+    font-size: 0.8rem;
+    transition: transform 0.35s ease;
+    margin-left: 15px;
+}
+
+.acordeon[open] summary::after {
+    transform: rotate(90deg);
+}
+
+.acordeon summary h2 {
+    margin: 0;
+}
+
+.acordeon-conteudo {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease, opacity 0.35s ease;
+    opacity: 0;
+}
+
+.acordeon[open] .acordeon-conteudo {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.acordeon-conteudo p {
+    overflow: hidden;
+    margin: 0;
+    padding-top: 15px;
 }
 
 .logo-etec {
     display: block;
     width: 100%;
-    max-height: 180px;
-    height: auto;
+    max-width: 900px;
+    height: 180px;
     object-fit: cover;
     margin: 30px auto;
-    border-radius: 12px;
-    box-shadow: none;
-    border: 3px solid var(--borda);
+    border-radius: 6px;
+    border: 1px solid var(--neon-ciano);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
 }
 
-.botao-cta {
+.botao-cta, .botao-secundário {
     display: block;
     width: fit-content;
     margin: 20px auto 50px auto;
-    padding: 14px 32px;
-    border: 3px solid var(--borda);
-    border-radius: 40px;
-    background-color: var(--cor-primaria);
-    color: white;
+    padding: 14px 34px;
+    border: 2px solid var(--neon-ciano);
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--neon-ciano);
     text-decoration: none;
     text-align: center;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
-    text-shadow: none;
-    box-shadow: 4px 4px 0px var(--borda);
-    transition: 0.2s;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    transition: 0.25s;
 }
 
-.botao-cta:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--borda);
+.botao-cta:hover, .botao-secundário:hover {
+    background-color: var(--neon-ciano);
+    color: var(--bg-principal);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.7);
 }
 
-.Componentes-utilizados h2 {
-    color: var(--cor-primaria);
-}
-
-.div1, .Componentes-utilizados, .Apresentação-membros {
-    color: var(--cor-primaria);
+.div1, .Componentes-utilizados, #Apresentação-membros, .Card-membro {
     background-color: var(--bg-cards);
-    border: 3px solid var(--borda);
-    border-radius: 16px;
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--neon-ciano);
+    border-radius: 6px;
     padding: 30px;
     margin: 30px auto;
-    max-width: 800px;
+    max-width: 900px;
     color: var(--texto);
-    box-shadow: 6px 6px 0px var(--borda);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .div1 h2 {
-    color: var(--cor-primaria);
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-top: 35px;
-    padding-top: 25px;
-    border-top:2px dashed #ddd;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--borda);
 }
 
-.div1 h2:first-type {
+.div1 h2:first-of-type {
     margin-top: 0;
     padding-top: 0;
     border-top: none;
 }
 
+h2 {
+    color: var(--neon-ciano-claro);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
 .Item1, .Item2 {
-    border-left: none;
-    padding-left: 0;
     color: var(--texto);
     margin-bottom: 30px;
+    list-style: none;
+    border-bottom: 1px solid var(--borda);
+    padding-bottom: 25px;
+}
+
+.Item1:last-child, .Item2:last-child {
+    border-bottom: none;
 }
 
 .ESP32foto, .Relé {
     max-width: 100%;
-    width: 300px;
+    width: 320px;
     height: 200px;
     object-fit: cover;
-    margin: 15px 0 30px 0;
-    border-radius: 12px;
-    border: 3px solid var(--borda);
-    box-shadow: 4px 4px 0px var(--borda);
+    margin: 15px 0 10px 0;
+    border-radius: 6px;
+    border: 1px solid var(--neon-roxo);
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.25);
 }
 
 .Card-membro {
     text-align: center;
-    background-color: var(--bg-cards);
-    border: 3px solid var(--borda);
-    border-radius: 16px;
-    padding: 30px;
-    margin: 20px auto;
-    max-width: 800px;
-    box-shadow: 6px 6px 0px var(--borda);
-}
-
-.Apresentação-membros h2 {
-    color: var(--cor-primaria);
 }
 
 .AvatarLevi, .AvatarRodrigo, .AvatarRyan {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
-    background-color: var(--cor-primaria);
-    border: 3px solid var(--borda);
-    box-shadow: none;
+    background-color: var(--bg-principal);
+    border: 2px solid var(--neon-ciano);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Orbitron', sans-serif;
     font-size: 26px;
-    font-weight: 800;
-    color: white;
-    text-shadow: none;
-    margin: 20px auto 10px auto;
+    font-weight: 700;
+    color: var(--neon-ciano);
+    margin: 25px auto 12px auto;
+    transition: 0.25s;
+}
+
+.AvatarLevi:hover, .AvatarRodrigo:hover, .AvatarRyan:hover {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+    transform: translateY(-4px);
+}
+
+.Card-membro h3, .Card-membro h4 {
+    color: var(--texto);
+    margin: 5px 0;
+}
+
+.Card-membro a {
+    color: var(--neon-ciano-claro);
+    font-size: 0.9rem;
 }
 
 .funcao, .funcao2, .funcao3 {
     color: var(--texto-secundario);
     font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.equipe-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.equipe-container .Card-membro {
+    flex: 1;
+    min-width: 220px;
+    margin: 0;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    #Nome-do-Projeto {
+        font-size: 1.6rem;
+    }
+
+    .logo-etec {
+        height: 120px;
+    }
+
+    .div1, .Componentes-utilizados, #Apresentação-membros, .Card-membro {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .ESP32foto, .Relé {
+        width: 100%;
+        height: 180px;
+    }
+
+    .botao-cta {
+        padding: 12px 24px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0 12px;
+    }
+
+    #Nome-do-Projeto {
+        font-size: 1.3rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
 }
