@@ -6,85 +6,99 @@
     <title>Mostra Técnica ETEC!</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
-<section id="hero">
-    <img src="Assets/logo-ETEC.jpeg" alt="Etec Philadelpho Gouvêia Netto" class="logo-etec">
 
-    <h1 id="Nome-do-Projeto">Controle de Lâmpada inteligente com ESP32/JavaScript</h1>
+<!-- ===== SEÇÃO 1: HERO / APRESENTAÇÃO ===== -->
+<section id="hero" class="pagina pagina-hero">
+    <img src="Assets/logo-ETEC.jpeg" alt="Etec Philadelpho Gouvêia Netto" class="logo-etec fade-in">
 
-    <a href="#ComponentesUtilizados" class="botao-cta">Ver Componentes</a>
-    <a href="#Apresentação-membros" class="botao-secundário">Veja os colaboradores do projeto!</a>
+    <h1 id="Nome-do-Projeto" class="fade-in atraso-1">Controle de Lâmpada inteligente com ESP32/JavaScript</h1>
 
-<div class="div1">
-    <details class="acordeon" open>
-        <summary><h2>Oque o nosso projeto faz?</h2></summary>
-        <div class="acordeon-conteudo">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>Eaque eveniet esse quas pariatur quaerat labore similique placeat. <br>Distinctio, impedit omnis non tenetur adipisci enim vitae, in animi consectetur veritatis fugiat!</p>
-        </div>
-    </details>
+    <div class="botoes-hero fade-in atraso-2">
+        <a href="#sobre" class="botao-cta">Ver Componentes</a>
+        <a href="#Apresentação-membros" class="botao-secundário">Veja os colaboradores do projeto!</a>
+    </div>
 
-    <details class="acordeon">
-        <summary><h2>Oque o nosso projeto resolve?</h2></summary>
-        <div class="acordeon-conteudo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Ipsum esse aperiam iusto fugit error in sint, iste consectetur totam hic magnam id officia perspiciatis dicta dolore! <br>Quae magni ut molestiae!</p>
-        </div>
-    </details>
+    <div class="indicador-scroll">
+        <span>▼</span>
+        Arraste para descobrir mais
+    </div>
+</section>
 
-    <details class="acordeon">
-        <summary><h2>Como o nosso projeto funciona?</h2></summary>
-        <div class="acordeon-conteudo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Ipsum esse aperiam iusto fugit error in sint, iste consectetur totam hic magnam id officia perspiciatis dicta dolore! <br>Quae magni ut molestiae!</p>
-        </div>
-    </details>
-</div>
+<!-- ===== SEÇÃO 2: SOBRE O PROJETO ===== -->
+<section id="sobre" class="pagina pagina-sobre">
+    <div class="div1 fade-in">
+        <details class="acordeon" open>
+            <summary><h2>Oque o nosso projeto faz?</h2></summary>
+            <div class="acordeon-conteudo">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>Eaque eveniet esse quas pariatur quaerat labore similique placeat. <br>Distinctio, impedit omnis non tenetur adipisci enim vitae, in animi consectetur veritatis fugiat!</p>
+            </div>
+        </details>
 
-    <div class="Componentes-utilizados" id="ComponentesUtilizados">
+        <details class="acordeon">
+            <summary><h2>Oque o nosso projeto resolve?</h2></summary>
+            <div class="acordeon-conteudo">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Ipsum esse aperiam iusto fugit error in sint, iste consectetur totam hic magnam id officia perspiciatis dicta dolore! <br>Quae magni ut molestiae!</p>
+            </div>
+        </details>
+
+        <details class="acordeon">
+            <summary><h2>Como o nosso projeto funciona?</h2></summary>
+            <div class="acordeon-conteudo">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Ipsum esse aperiam iusto fugit error in sint, iste consectetur totam hic magnam id officia perspiciatis dicta dolore! <br>Quae magni ut molestiae!</p>
+            </div>
+        </details>
+    </div>
+</section>
+
+<!-- ===== SEÇÃO 3: COMPONENTES UTILIZADOS ===== -->
+<section id="ComponentesUtilizados" class="pagina pagina-componentes">
+    <div class="Componentes-utilizados fade-in">
         <h2>Componentes Utilizados:</h2>
 
         <ol>
-            <li class="Item1">ESP32 (Microcontrolador utilizado como cerébro do projeto para comunicação com Lâmpadas.)
+            <li class="Item1 fade-in atraso-1">ESP32 (Microcontrolador utilizado como cerébro do projeto para comunicação com Lâmpadas.)
                 <br>
                 <img src="Assets/Foto-ESP32.jpg" alt="ESP32" class="ESP32foto">
             </li>
 
-            <li class="Item2">Módulo Relé utilizado como interruptor responsivo para a lâmpada conectado diretamente com o ESP32
+            <li class="Item2 fade-in atraso-2">Módulo Relé utilizado como interruptor responsivo para a lâmpada conectado diretamente com o ESP32
                 <br>
                 <img src="Assets/Foto-Módulo-Relé.jpg" alt="MóduloRelé" class="Relé">
             </li>
-         </ol>
+        </ol>
     </div>
+</section>
 
-    <div id="Apresentação-membros">
-        <h2><strong>Conheça mais sobre os membros do projeto!</strong></h2>
-    </div>
+<!-- ===== SEÇÃO 4: EQUIPE ===== -->
+<section id="Apresentação-membros" class="pagina pagina-equipe">
+    <h2 class="fade-in"><strong>Conheça mais sobre os membros do projeto!</strong></h2>
 
     <div class="equipe-container">
-        <div class="Card-membro">
+        <div class="Card-membro fade-in atraso-1">
             <div class="AvatarLevi">L</div>
             <h3>Levi Santos</h3>
             <a href="https://github.com/LevizBlessedpo" target="_blank">Conecte-se comigo no GITHUB!</a>
-            <p class="funcao">Eletrônica & firmware (ESP32/JavaScript)</p>
+            <p class="funcao">Eletrônica &amp; firmware (ESP32/JavaScript)</p>
         </div>
 
-        <div class="Card-membro">
+        <div class="Card-membro fade-in atraso-2">
             <div class="AvatarRodrigo">R</div>
             <h4>Rodrigo Siqueira</h4>
             <a href="https://www.instagram.com/rodrigo.rst.1?igsh=MW9wcHN3d3JmeTlycA==" target="_blank">Siga-me no instagram!</a>
             <p class="funcao2">Montagem do circuito e material</p>
-            
         </div>
-        <div class="Card-membro">
+
+        <div class="Card-membro fade-in atraso-3">
             <div class="AvatarRyan">RB</div>
             <h4>Ryan Bartolomei</h4>
             <a href="https://www.instagram.com/ryan.b_sp?igsh=MTk4dWg5ZzlncXhzdw==" target="_blank">Segue ai!</a>
             <p class="funcao3">Montagem do circuito e lógica de funcionamento</p>
-            
         </div>
     </div>
 </section>
 
-<script src = "animacoes.js"></script>
+<script src="animacoes.js"></script>
 </body>
 </html>
