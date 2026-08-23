@@ -1,6 +1,8 @@
 :root {
     --bg-principal: #05070d;
     --bg-cards: #0d1220;
+    --bg-secao-2: #0a0714;
+    --bg-secao-3: #060a12;
     --neon-ciano: #00f0ff;
     --neon-ciano-claro: #7cf9ff;
     --neon-roxo: #b026ff;
@@ -13,49 +15,151 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+    /* Faz a página "travar" em cada seção ao arrastar/rolar */
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
 body {
     background-color: var(--bg-principal);
     color: var(--texto);
     font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 0 20px;
+    padding: 0;
     overflow-x: hidden;
     position: relative;
+}
+
+/* ===========================
+   SEÇÕES FULL-SCREEN (SNAP)
+   =========================== */
+.pagina {
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pagina > * {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Fundo de cada seção, variando dentro da mesma paleta */
+.pagina-hero {
+    background-color: var(--bg-principal);
     background-image:
         linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
-body::before {
+.pagina-sobre {
+    background-color: var(--bg-secao-2);
+    background-image: radial-gradient(circle at 20% 20%, rgba(176, 38, 255, 0.10), transparent 55%),
+                       radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.08), transparent 55%);
+}
+
+.pagina-componentes {
+    background-color: var(--bg-secao-3);
+    background-image: linear-gradient(180deg, rgba(0, 240, 255, 0.05), transparent 40%);
+}
+
+.pagina-equipe {
+    background-color: var(--bg-principal);
+    background-image: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08), transparent 60%);
+}
+
+/* Brilhos animados presos ao hero */
+.pagina-hero::before {
     content: "";
-    position: fixed;
+    position: absolute;
     top: -20%;
     left: -10%;
     width: 500px;
     height: 500px;
     background: radial-gradient(circle, rgba(0, 240, 255, 0.12), transparent 70%);
     filter: blur(40px);
-    z-index: -1;
+    z-index: 0;
     animation: pulsar 12s ease-in-out infinite;
 }
 
-body::after {
+.pagina-hero::after {
     content: "";
-    position: fixed;
+    position: absolute;
     bottom: -20%;
     right: -10%;
     width: 500px;
     height: 500px;
     background: radial-gradient(circle, rgba(176, 38, 255, 0.10), transparent 70%);
     filter: blur(40px);
-    z-index: -1;
+    z-index: 0;
     animation: pulsar 12s ease-in-out infinite reverse;
 }
 
 @keyframes pulsar {
     0%, 100% { transform: scale(1); opacity: 0.7; }
     50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* ===========================
+   FADE-IN AO ROLAR (controlado via JS)
+   =========================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in.atraso-1 { transition-delay: 0.15s; }
+.fade-in.atraso-2 { transition-delay: 0.3s; }
+.fade-in.atraso-3 { transition-delay: 0.45s; }
+
+/* ===========================
+   INDICADOR DE SCROLL (hero)
+   =========================== */
+.indicador-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--texto-secundario);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 1;
+    animation: flutuar 2s ease-in-out infinite;
+}
+
+.indicador-scroll span {
+    font-size: 1.1rem;
+    color: var(--neon-ciano);
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
 }
 
 #Nome-do-Projeto {
@@ -65,8 +169,7 @@ body::after {
     font-weight: 700;
     font-size: 2.2rem;
     letter-spacing: 1px;
-    margin: 40px auto 20px auto;
-    max-width: 900px;
+    margin: 20px auto;
     text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
 }
 
@@ -131,16 +234,16 @@ body::after {
     max-width: 900px;
     height: 180px;
     object-fit: cover;
-    margin: 30px auto;
+    margin: 0 auto 20px auto;
     border-radius: 6px;
     border: 1px solid var(--neon-ciano);
     box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
 }
 
 .botao-cta, .botao-secundário {
-    display: block;
+    display: inline-block;
     width: fit-content;
-    margin: 20px auto 50px auto;
+    margin: 10px;
     padding: 14px 34px;
     border: 2px solid var(--neon-ciano);
     border-radius: 4px;
@@ -155,6 +258,11 @@ body::after {
     text-transform: uppercase;
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
     transition: 0.25s;
+}
+
+.botoes-hero {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .botao-cta:hover, .botao-secundário:hover {
@@ -173,17 +281,6 @@ body::after {
     max-width: 900px;
     color: var(--texto);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-.div1, .Componentes-utilizados, #Apresentação-membros, .equipe-container {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.div1, .Componentes-utilizados.visivel, #Apresentação-membros.visivel, .equipe-container.visivel {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .div1 h2 {
@@ -277,7 +374,7 @@ h2 {
     gap: 20px;
     flex-wrap: wrap;
     max-width: 900px;
-    margin: 30px auto;
+    margin: 30px auto 0 auto;
 }
 
 .equipe-container .Card-membro {
@@ -306,22 +403,34 @@ h2 {
         height: 180px;
     }
 
-    .botao-cta {
+    .botao-cta, .botao-secundário {
         padding: 12px 24px;
         font-size: 0.8rem;
+    }
+
+    .pagina {
+        padding: 40px 16px;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 0 12px;
-    }
-
     #Nome-do-Projeto {
         font-size: 1.3rem;
     }
 
     h2 {
         font-size: 1.3rem;
+    }
+}
+
+/* Reduz animação para quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .fade-in {
+        transition: none;
+        opacity: 1;
+        transform: none;
     }
 }
