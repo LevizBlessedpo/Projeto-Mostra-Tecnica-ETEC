@@ -82,6 +82,12 @@ body {
     background-image: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08), transparent 60%);
 }
 
+.pagina-avaliacao {
+    background-color: var(--bg-secao-2);
+    background-image: radial-gradient(circle at 50% 100%, rgba(176, 38, 255, 0.10), transparent 60%);
+    text-align: center;
+}
+
 /* Brilhos animados presos ao hero */
 .pagina-hero::before {
     content: "";
@@ -421,6 +427,20 @@ h2 {
     h2 {
         font-size: 1.3rem;
     }
+}
+
+/* ===========================
+   RODAPÉ
+   =========================== */
+.rodape {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--bg-cards);
+    border-top: 1px solid var(--borda);
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+    scroll-snap-align: start;
 }
 
 /* Reduz animação para quem prefere menos movimento */
