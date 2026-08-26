@@ -308,7 +308,7 @@ h2 {
     letter-spacing: 0.5px;
 }
 
-.Item1, .Item2 {
+.Item1, .Item2, .Item3, .Item4, .Item5 {
     color: var(--texto);
     margin-bottom: 30px;
     list-style: none;
@@ -316,11 +316,11 @@ h2 {
     padding-bottom: 25px;
 }
 
-.Item1:last-child, .Item2:last-child {
+.Item1:last-child, .Item2:last-child, .Item3:last-child, .Item4:last-child, .Item5:last-child {
     border-bottom: none;
 }
 
-.ESP32foto, .Relé {
+.ESP32foto, .Relé, .DTH22, .protob, .oled {
     max-width: 100%;
     width: 320px;
     height: 200px;

@@ -32,21 +32,27 @@
         <details class="acordeon" open>
             <summary><h2>Oque o nosso projeto faz?</h2></summary>
             <div class="acordeon-conteudo">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>Eaque eveniet esse quas pariatur quaerat labore similique placeat. <br>Distinctio, impedit omnis non tenetur adipisci enim vitae, in animi consectetur veritatis fugiat!</p>
+                <p>
+                    O nosso projeto basicamente funciona de maneira bem simples e simplificada, com seu celular e um aplicativo/site é possível acender/apagar uma lâmpada sem precisa de interruptor e um eletricista. <br> Com o <strong>ESP32 e sua funcionalidade blueetooth</strong> é possível acender e apagar a lâmpada a uma distância de até <strong>100 metros!</strong> Com um display <strong>OLED</strong> é possível ver também através do sensor de temperatura na tela os valores da temperatura ambiente e uma interface automatizada!
+                </p>
             </div>
         </details>
 
         <details class="acordeon">
             <summary><h2>Oque o nosso projeto resolve?</h2></summary>
             <div class="acordeon-conteudo">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Ipsum esse aperiam iusto fugit error in sint, iste consectetur totam hic magnam id officia perspiciatis dicta dolore! <br>Quae magni ut molestiae!</p>
+                <p>
+                    <strong>O nosso projeto visa resolver um problema que muitas pessoas tem atualmente</strong>, quando vamos tentar encontrar um eletricista para fazer uma instalação de uma lâmpada na sua casa sai caro dependendo do tipo de interruptor/lâmpada não é? <br> Bem com apenas <strong>R$ 100-150</strong> como componentes básicos é possível automatizar esse processo de acender a sua lâmpada sem precisar se levantar do seu sofá quentinho e a distância e observar também a temperatura ambiente do seu comôdo que você instalou a lâmpada!
+                </p>
             </div>
         </details>
 
         <details class="acordeon">
             <summary><h2>Como o nosso projeto funciona?</h2></summary>
             <div class="acordeon-conteudo">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Ipsum esse aperiam iusto fugit error in sint, iste consectetur totam hic magnam id officia perspiciatis dicta dolore! <br>Quae magni ut molestiae!</p>
+                <p>
+                    O nosso projeto funciona da seguinte maneira: O <strong>ESP32 a plaquinha preta pequena é o cérebro do nosso projeto</strong>, ele é quem disponibiliza os pinos de comunicação do circuito, ele também <strong>fornece o bluetooth que usamos para conectar no app/site para que a lâmpada seja acessa.</strong> O sensor de temperatura como o nome já diz vê a temperatura, retórico não? Bem... <strong>Ele se comunica diretamente com o ESP32 mandando seus valores para ele para que através da programação no ESP32 ele se comunique com o display OLED e mostre os valores da temperatura na tela,</strong> o módulo relé fica responsável por alimentar a lâmpada e acende-lá enquanto usamos programação para acender/desligar a lâmpada através de um botão ou comando que o usuário digita na tela.
+                </p>
             </div>
         </details>
     </div>
@@ -58,14 +64,34 @@
         <h2>Componentes Utilizados:</h2>
 
         <ol>
-            <li class="Item1 fade-in atraso-1">ESP32 (Microcontrolador utilizado como cerébro do projeto para comunicação com Lâmpadas.)
+            <li class="Item1 fade-in atraso-1">
+                ESP32 (Microcontrolador utilizado como cerébro do projeto para comunicação com Lâmpadas.):
                 <br>
                 <img src="Assets/Foto-ESP32.jpg" alt="ESP32" class="ESP32foto">
             </li>
 
-            <li class="Item2 fade-in atraso-2">Módulo Relé utilizado como interruptor responsivo para a lâmpada conectado diretamente com o ESP32
+            <li class="Item2 fade-in atraso-2">
+                Módulo Relé utilizado como interruptor responsivo para a lâmpada, conectado diretamente com o ESP32:
                 <br>
                 <img src="Assets/Foto-Módulo-Relé.jpg" alt="MóduloRelé" class="Relé">
+            </li>
+
+            <li class="Item3 fade-in atraso-3">
+                Módulo DTH22 (Sensor de temperatura), utilizado para ler a temperatura ambiente e mostrar no display do display OLED:
+                <br>
+                <img src="Assets/Sensor DTH22.png" alt="Sensor" class="DTH22">
+            </li>
+
+            <li class="Item4 fade-in atraso-4">
+                Placa de prototipagem utilizada como ajuda para encaixe de componentes e pinos:
+                <br>
+                <img src="Assets/protoboard.png" alt="Placa de Prototipagem" class="protob">
+            </li>
+
+            <li class="Item5 fade-in atraso-5">
+                Display OLED utilizado para mostrar os valores da temperatura obtidos pelo sensor DTH22:
+                <br>
+                <img src="Assets/oled.png" alt="Display OLED" class="oled">
             </li>
         </ol>
     </div>
@@ -86,24 +112,37 @@
         <div class="Card-membro fade-in atraso-2">
             <div class="AvatarRodrigo">R</div>
             <h4>Rodrigo Siqueira</h4>
-            <a href="https://www.instagram.com/rodrigo.rst.1?igsh=MW9wcHN3d3JmeTlycA==" target="_blank">Siga-me no instagram!</a>
-            <p class="funcao2">Montagem do circuito e material</p>
+            <a href="https://www.instagram.com/rodrigo.rst.1?igsh=MW9wcHN3d3JmeTlycA=="                  target="_blank">Siga-me no instagram!</a>
+            <p class="funcao2">
+                Montagem do circuito e material
+            </p>
         </div>
 
         <div class="Card-membro fade-in atraso-3">
             <div class="AvatarRyan">RB</div>
             <h4>Ryan Bartolomei</h4>
-            <a href="https://www.instagram.com/ryan.b_sp?igsh=MTk4dWg5ZzlncXhzdw==" target="_blank">Segue ai!</a>
-            <p class="funcao3">Montagem do circuito e lógica de funcionamento</p>
+            <a href="https://www.instagram.com/ryan.b_sp?igsh=MTk4dWg5ZzlncXhzdw==" 
+                target="_blank">
+                Segue ai!
+            </a>
+            <p class="funcao3">
+                Montagem do circuito e lógica de funcionamento
+            </p>
         </div>
     </div>
 </section>
 
 <section id="avaliacao" class="pagina pagina-avaliacao">
-    <h2 class="fade-in">Ajude nosso TCC!</h2>
-    <p class="fade-in atraso-1" style="color: var(--texto-secundario); margin-bottom: 20px;">Sua opinião sobre o projeto é muito importante pra gente. Leva menos de 2 minutos!</p>
+    <h2 class="fade-in">
+        Nos de sua opinião!
+    </h2>
+    <p class="fade-in atraso-1" style="color: var(--texto-secundario); margin-bottom: 20px;">
+        Sua opinião sobre o projeto é muito importante pra gente. Leva menos de 2 minutos!
+    </p>
     <div class="fade-in atraso-2" style="text-align: center;">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-S5z8bwTJZY995n46qdAZtTOZvWFghy-c9VvfFofqC4ekHQ/viewform?usp=dialog" target="_blank" class="botao-cta">Avaliar o Projeto</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-S5z8bwTJZY995n46qdAZtTOZvWFghy-c9VvfFofqC4ekHQ/viewform?usp=dialog" 
+         target="_blank" class="botao-cta">Avaliar o Projeto
+        </a>
     </div>
 </section>
 
