@@ -1,117 +1,78 @@
-<div align="center">
+# 💡 Controle de Lâmpadas via Bluetooth com ESP32
 
-# 🚀 MOSTRA TÉCNICA - ETEC PHILADELPHO GOUVÊIA NETTO
+![Mostra Técnica ETEC](https://img.shields.io/badge/ETEC-Philadelpho_Gouv%C3%AAia_Netto-0056b3?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)
 
-### 🌐 Site de Divulgação do Projeto:
+Projeto apresentado para a **Mostra Técnica da ETEC Philadelpho Gouvêia Netto**, focado na automação residencial acessível e simplificada de iluminação e monitoramento ambiental através do microcontrolador ESP32.
 
-**Tecnologia • Inovação • Criatividade • Desenvolvimento Web**
+---
 
-<br>
+## 🛠️ Tecnologias Utilizadas
 
+### Web & Interface
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-<br>
-> (Criado com a ajuda de: n0x-503)
 
-<br>
-
-> 💡 Um espaço digital para apresentar ideias, projetos e conhecimentos desenvolvidos pelos alunos.
-
-</div>
+### Hardware & Sistemas Embarcados
+* **ESP32** (Microcontrolador com Bluetooth e Wi-Fi integrado)
+* **Firmware / Programação de Hardware** (Lógica de acionamento e leitura de sensores)
 
 ---
 
-## 📑 Sumário
+## 📌 Sobre o Projeto
 
-- [📖 Sobre o Projeto](#-sobre-o-projeto)
-- [🎯 Objetivos](#-objetivos)
-- [✨ Funcionalidades](#-funcionalidades) - ainda em desenvolvimento!
-- [🛠️ Tecnologias](#️-tecnologias) - ainda em desenvolvimento!
-- [🏗️ Arquitetura](#️-arquitetura) - ainda em desenvolvimento!
-- [📱 Divulgação](#-divulgação)
-- [📂 Estrutura](#-estrutura) - ainda em desenvolvimento!
-- [⚙️ Instalação](#️-instalação) - ainda em desenvolvimento!
-- [🚀 Execução](#-execução) - ainda em desenvolvimento!
-- [📈 Futuras Melhorias](#-futuras-melhorias)
-- [👨‍💻 Equipe](#-equipe)
+### ❓ O que o projeto faz?
+De forma simples e intuitiva, o projeto permite que qualquer pessoa ligue ou desligue uma lâmpada diretamente pelo celular via **Bluetooth**, eliminando a necessidade de reforma ou instalação de interruptores tradicionais. 
 
----
+Além disso, o sistema conta com monitoramento em tempo real: os valores da **temperatura ambiente** são lidos e exibidos em um display integrado ao circuito.
 
-# 📖 Sobre o Projeto
+### 💡 O que ele resolve?
+Instalar automação residencial com eletricistas ou módulos proprietários costuma ser caro. Com um custo estimado de apenas **R$ 100,00 a R$ 150,00** em componentes básicos, esta solução entrega:
+- **Conforto:** Controle a iluminação à distância sem sair do lugar.
+- **Acessibilidade:** Instalação e operação simplificadas.
+- **Informação:** Monitoramento contínuo da temperatura do cômodo.
 
-O **Mostra Técnica** é um projeto desenvolvido para criar um **site de divulgação da Mostra Técnica dos nossos projetos da nossa escola!**
-
-A plataforma tem como objetivo reunir, em um único ambiente, informações sobre:
-
-- 🎓 O curso;
-- 🔬 Os projetos desenvolvidos pelos alunos;
-- 📚 A Mostra Técnica;
-- 💡 Os conhecimentos adquiridos durante o curso;
-- 🌐 As tecnologias utilizadas no desenvolvimento.
-
-A proposta é transformar o site em uma **extensão digital da Mostra Técnica**, permitindo que visitantes tenham acesso rápido e fácil às informações do evento.
+### ⚙️ Como funciona?
+1. **ESP32 (O Cérebro):** Gerencia os pinos do circuito, disponibiliza o sinal Bluetooth para conexão com o aplicativo/site e processa toda a lógica.
+2. **Módulo Relé:** Atua como o interruptor eletrônico que alimenta/corta a energia da lâmpada de forma segura.
+3. **Sensor DHT11:** Realiza a leitura da temperatura e umidade do ambiente e envia os dados ao ESP32.
+4. **Display LCD (I2C):** Exibe a interface com os valores atualizados do sensor para visualização direta no dispositivo.
+5. **Sensor LDR:** Funciona como alternativa fotossensível para controle da lâmpada de acordo com a luminosidade ambiente.
 
 ---
 
-# 🎯 Objetivos
+## 🔌 Componentes de Hardware Utilizados
 
-Demonstrar os objetivos principais do projeto sobre: "Oque ele faz?", "Para que serve?", "Como usar?", "Príncipios importantes de funcionamento etc."
-<table>
-<tr>
-<td width="50%">
-
-</td>
-
-<td width="50%">
-
-### 🎓 Apresentar
-
-Divulgar o curso e suas principais características para pessoas de fora e interagir com outras escolas da região!
-
-</td>
-</tr>
-
-<tr>
-<td width="50%">
-
-### 🔬 Demonstrar
-
-Apresentar os projetos desenvolvidos pelos alunos da ETEC.
-
-</td>
-
-<td width="50%">
-
-### 📱 Facilitar
-
-Permitir que visitantes encontrem informações de maneira rápida e moderna a explição geral do site do projeto e funcionalidades aplicadas no desenvolvimento do projeto da Mostra Técnica.
-
-</td>
-</tr>
-
-<tr>
-<td width="50%">
-
-### 💻 Aplicação
-
-Colocar em prática conhecimentos de desenvolvimento web e integração de linguagens como JavaScript para funcionalidades importantes do site de apresentação do projeto.
-
-</td>
-
-<td width="50%">
-
-</td>
-</tr>
-</table>
+| Componente | Função |
+| :--- | :--- |
+| **ESP32** | Microcontrolador central e gerenciador do Bluetooth. |
+| **Módulo Relé** | Interruptor responsivo acionado pelo ESP32 para controle da lâmpada. |
+| **Módulo DHT11** | Sensor responsável pela medição de temperatura e umidade. |
+| **Placa de Prototipagem (Protoboard)** | Base para montagem e organização dos pinos/conexões. |
+| **Display LCD com Módulo I2C** | Tela de exibição dos dados de temperatura e interface visual. |
+| **Resistor LDR** | Sensor fotossensível para automação baseada na luz ambiente. |
 
 ---
 
-# ✨ Funcionalidades
+## 👥 Equipe & Colaboradores
 
-> 🚧 **Projeto ainda em desenvolvimento, por isso vai haver grandes mudanças no nosso README de aprensetação!**
+| Foto / Avatar | Nome | Função no Projeto | Redes / Links |
+| :---: | :--- | :--- | :---: |
+| **L** | **Levi Santos** | Eletrônica & Firmware (ESP32 / JavaScript) | [<img src="https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white"/>](https://github.com/LevizBlessedpo) |
+| **R** | **Rodrigo Siqueira** | Montagem do Circuito e Material | [<img src="https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white"/>](https://www.instagram.com/rodrigo.rst.1) |
+| **RB** | **Ryan Bartolomei** | Montagem do Circuito e Lógica de Funcionamento | [<img src="https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white"/>](https://www.instagram.com/ryan.b_sp) |
 
-### 🏠 Página Inicial
+---
 
-Apresentação do nosso projeto da amostra técnica desenvolvido com ajuda do nosso professor Sérgio Tadao Consequi do curso de **Eletrônica**, com facilidade para PCs e Mobiles conseguirem acessar.
+## 📝 Formulário de Avaliação
 
+A sua opinião sobre o projeto é muito importante para a nossa evolução! Leva menos de 2 minutos para responder:
+
+👉 [**Clique aqui para Avaliar o Projeto via Google Forms**](https://docs.google.com/forms/d/e/1FAIpQLSf-S5z8bwTJZY995n46qdAZtTOZvWFghy-c9VvfFofqC4ekHQ/viewform?usp=dialog)
+
+---
+
+## 📄 Licença e Direitos
+
+Copyright © **ETEC Philadelpho Gouvêia Netto** — Todos os direitos reservados.
