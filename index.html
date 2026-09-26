@@ -13,7 +13,7 @@
 <section id="hero" class="pagina pagina-hero">
     <img src="Assets/logo-ETEC.jpeg" alt="Etec Philadelpho Gouvêia Netto" class="logo-etec fade-in">
 
-    <h1 id="Nome-do-Projeto" class="fade-in atraso-1">Controle de Lâmpada inteligente com ESP32/JavaScript</h1>
+    <h1 id="Nome-do-Projeto" class="fade-in atraso-1">Controle de Lâmpadas acionada via Bluetooth com ESP32</h1>
 
     <div class="botoes-hero fade-in atraso-2">
         <a href="#ComponentesUtilizados" class="botao-cta">Ver Componentes</a>
@@ -77,9 +77,9 @@
             </li>
 
             <li class="Item3 fade-in atraso-3">
-                Módulo DTH22 (Sensor de temperatura), utilizado para ler a temperatura ambiente e mostrar no display do display OLED:
+                Módulo DTH11 (Sensor de temperatura), utilizado para ler a temperatura ambiente e umidade e mostrar no display do display OLED:
                 <br>
-                <img src="Assets/Sensor DTH22.png" alt="Sensor" class="DTH22">
+                <img src="Assets/dht11.png" alt="Sensor" class="DTH11">
             </li>
 
             <li class="Item4 fade-in atraso-4">
@@ -89,9 +89,15 @@
             </li>
 
             <li class="Item5 fade-in atraso-5">
-                Display OLED utilizado para mostrar os valores da temperatura obtidos pelo sensor DTH22:
+                LCD com módulo I2C utilizado para mostrar os valores da temperatura obtidos pelo sensor DTH22:
                 <br>
-                <img src="Assets/oled.png" alt="Display OLED" class="oled">
+                <img src="Assets/lcd i2c.png" alt="LCD com módulo I2C" class="lcdi2c">
+            </li>
+
+            <li class="Item6 fade-in atraso-6">
+                Resistor váriavel LDR usado como alternativa para apagar e acender a lâmpada quando não houver luz ambiente:                
+                <br>
+                <img src="Assets/ldr.png" alt="LCD com módulo I2C" class="ldr">
             </li>
         </ol>
     </div>
