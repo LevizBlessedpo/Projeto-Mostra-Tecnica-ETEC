@@ -1,6 +1,4 @@
-// Biblioteca bluetooth clássico
 #include "BluetoothSerial.h"
-// Inicializa a biblioteca do lcd I2C e DHT
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
@@ -14,108 +12,114 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 DHT dht(4, DHT11); 
 BluetoothSerial SerialBT; 
 
-String estadoLDR = "Lampadas OFF"; 
+// Limiares de luz ambiente (ajustável)
+const int LIMIAR_ESCURO = 1000; // Valor com a lanterna cobrindo (ajustado para ser mais sensível)
+const int LIMIAR_CLARO = 2200;  // Valor com luz da lanterna 
 
-// Variável para controlar o tempo sem travar o Bluetooth com delay()
-unsigned long tempoAnteriorDHT = 0;
-const long intervaloDHT = 1000; // Atualiza DHT e LCD a cada 1 segundo
+bool cobertoPeloDedo = false;
+String estadoLCD = "Modo: Automatico";
 
 void setup() {
   Serial.begin(115200); 
   
-  pinMode(PINO_TRANSISTOR, OUTPUT);
   pinMode(PINO_LDR, INPUT);
+  
+  // O transistor liga no setup e NUNCA mais desliga a alimentação do LDR
+  pinMode(PINO_TRANSISTOR, OUTPUT);
+  digitalWrite(PINO_TRANSISTOR, HIGH); 
+
   pinMode(PINO_RELE1, OUTPUT); 
   pinMode(PINO_RELE2, OUTPUT);
-  
-  // Relés iniciam desligados (Relé com acionamento em nível LOW inicia em HIGH)
-  digitalWrite(PINO_TRANSISTOR, LOW);
-  digitalWrite(PINO_RELE1, HIGH);
+  // Inicia relés desligados (Assumindo relés acionados em LOW)
+  digitalWrite(PINO_RELE1, HIGH); 
   digitalWrite(PINO_RELE2, HIGH);
-  
+
   dht.begin(); 
   SerialBT.begin("Rodando na Base da Oração"); 
   
   lcd.init(); 
   lcd.backlight();
-  lcd.setCursor(0, 0);
-  lcd.print("Sistema Iniciado");
 }
 
 void loop() {
-  // 1. LEITURA DO BLUETOOTH
+  // -------------------------------------------------------------
+  // 1. LEITURA AUTOMÁTICA DO LDR
+  // -------------------------------------------------------------
+  int leituraLDR = analogRead(PINO_LDR);
+  
+  // Valor da luminosidade no monitor serial
+  Serial.print("Leitura LDR: ");
+  Serial.println(leituraLDR);
+
+  // SE COLOCAR a Lanterna do celular: Liga ambas as lâmpadas imediatamente
+  if (leituraLDR < LIMIAR_ESCURO && !cobertoPeloDedo) {
+    digitalWrite(PINO_RELE1, LOW);
+    digitalWrite(PINO_RELE2, LOW);
+    cobertoPeloDedo = true;
+    estadoLCD = "LDR: Dedo (L1+L2)";
+  } 
+  // SE TIRAR a Lanterna do celular: Desliga as lâmpadas e volta ao normal
+  else if (leituraLDR > LIMIAR_CLARO && cobertoPeloDedo) {
+    digitalWrite(PINO_RELE1, HIGH);
+    digitalWrite(PINO_RELE2, HIGH);
+    cobertoPeloDedo = false;
+    estadoLCD = "LDR: Livre";
+  }
+
+  // -------------------------------------------------------------
+  // 2. COMANDOS VIA BLUETOOTH
+  // -------------------------------------------------------------
   if (SerialBT.available()) {
     String receberDados = SerialBT.readString();
-    receberDados.trim(); // Limpa espaços e quebras de linha
+    receberDados.trim();
     
-    // Controle da Lâmpada 1 via BT
-    if (receberDados == "Ligar L1") { 
-      digitalWrite(PINO_RELE1, LOW); // Liga Relé 1
-      estadoLDR = "L1: ON ";
-    } else if (receberDados == "Desligar L1") {
-      digitalWrite(PINO_RELE1, HIGH); // Desliga Relé 1
-      estadoLDR = "L1: OFF";
+    if (receberDados == "Ligar L1") {
+      digitalWrite(PINO_RELE1, LOW);
+      estadoLCD = "BT: L1 ON";
+    } 
+    else if (receberDados == "Desligar L1") { 
+      digitalWrite(PINO_RELE1, HIGH);
+      estadoLCD = "BT: L1 OFF";
     }
-
-    // Controle da Lâmpada 2 via BT
-    if (receberDados == "Ligar L2") {
-      digitalWrite(PINO_RELE2, LOW); // Liga Relé 2
-      estadoLDR = "L2: ON ";
-    } else if (receberDados == "Desligar L2") {
-      digitalWrite(PINO_RELE2, HIGH); // Desliga Relé 2
-      estadoLDR = "L2: OFF";
-    }
-
-    // Liga/Desliga a alimentação do circuito do LDR pelo Transistor
-    if (receberDados == "LIGAR_TRANSISTOR" || receberDados == "LIGAR") {
-      digitalWrite(PINO_TRANSISTOR, HIGH);
-    } else if (receberDados == "DESLIGAR_TRANSISTOR" || receberDados == "DESLIGAR") {
-      digitalWrite(PINO_TRANSISTOR, LOW);
+    else if (receberDados == "Ligar L2") {
+      digitalWrite(PINO_RELE2, LOW);
+      estadoLCD = "BT: L2 ON";
+    } 
+    else if (receberDados == "Desligar L2") {
+      digitalWrite(PINO_RELE2, HIGH);
+      estadoLCD = "BT: L2 OFF";
     }
   }
 
-  // 2. LÓGICA DO LDR (Só atua se o Transistor estiver ativado)
-  // Caso o transistor (pino 23) esteja em HIGH, permite que o LDR controle o Relé 1 automaticamente
-  if (digitalRead(PINO_TRANSISTOR) == HIGH) {
-    int ESTADO_LDR = digitalRead(PINO_LDR);
-    
-    // Ajuste aqui a lógica conforme a montagem do circuito do LDR:
-    if (ESTADO_LDR == HIGH) {
-      digitalWrite(PINO_RELE1, LOW);  // Liga a lâmpada no escuro
-      estadoLDR = "LDR: L1 ON";
-    }
+  // -------------------------------------------------------------
+  // 3. LEITURA DO DHT11 E EXIBIÇÃO NO LCD
+  // -------------------------------------------------------------
+  float temperatura = dht.readTemperature();
+  float umidade = dht.readHumidity();
+  
+  // Linha 0: Umidade e Temperatura
+  lcd.setCursor(0, 0);
+  lcd.print("U:");
+  if (isnan(umidade)) {
+    lcd.print("Err ");
+  } else {
+    lcd.print((int)umidade);
+    lcd.print("% ");
   }
 
-  // 3. LEITURA DO DHT11 E ATUALIZAÇÃO DO LCD 
-  unsigned long tempoAtual = millis();
-  if (tempoAtual - tempoAnteriorDHT >= intervaloDHT) {
-    tempoAnteriorDHT = tempoAtual;
-
-    float temperatura = dht.readTemperature();
-    float umidade = dht.readHumidity();
-    
-    // Linha 0 do LCD: Umidade e Temperatura
-    lcd.setCursor(0, 0);
-    lcd.print("U:");
-    if (isnan(umidade)) {
-      lcd.print("ErrorU ");
-    } else {
-      lcd.print((int)umidade);
-      lcd.print("% ");
-    }
-
-    lcd.print("T:");
-    if (isnan(temperatura)) {
-      lcd.print("ErrorT  ");
-    } else {
-      lcd.print((int)temperatura);
-      lcd.print("C  ");
-    }
-
-    // Linha 1 do LCD: Estado atual
-    lcd.setCursor(0, 1);
-    lcd.print("Status: ");
-    lcd.print(estadoLDR);
-    lcd.print("    "); // Limpa caracteres sobressalentes
+  lcd.print("T:");
+  if (isnan(temperatura)) {
+    lcd.print("Err ");
+  } else {
+    lcd.print((int)temperatura);
+    lcd.print("C  ");
   }
+
+  // Linha 1: Status no LCD
+  lcd.setCursor(0, 1);
+  lcd.print("                "); // Limpa a linha
+  lcd.setCursor(0, 1);
+  lcd.print(estadoLCD);
+
+  delay(150); // Leitura ultra-rápida (150 milissegundos)
 }
