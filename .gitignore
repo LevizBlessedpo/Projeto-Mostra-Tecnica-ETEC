@@ -1,0 +1,6 @@
+node_modules/
+src/config.ts
+dist/config.js
+dist/config.d.ts
+dist/config.js.map
+dist/config.d.ts.map

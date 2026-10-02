@@ -1,0 +1,23 @@
+{
+  "name": "projeto-mostra-tecnica-etec",
+  "version": "1.0.0",
+  "description": "![Mostra Técnica ETEC](https://img.shields.io/badge/ETEC-Philadelpho_Gouv%C3%AAia_Netto-0056b3?style=for-the-badge) ![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)",
+  "main": "animacoes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LevizBlessedpo/Projeto-Mostra-Tecnica-ETEC.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LevizBlessedpo/Projeto-Mostra-Tecnica-ETEC/issues"
+  },
+  "homepage": "https://github.com/LevizBlessedpo/Projeto-Mostra-Tecnica-ETEC#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}

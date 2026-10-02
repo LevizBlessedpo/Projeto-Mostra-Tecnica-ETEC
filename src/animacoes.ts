@@ -1,9 +1,9 @@
 // Faz os elementos com a classe "fade-in" aparecerem suavemente
 // conforme entram na área visível da tela durante a rolagem.
 document.addEventListener('DOMContentLoaded', () => {
-    const elementos = document.querySelectorAll('.fade-in');
+    const elementos: NodeListOf<Element> = document.querySelectorAll('.fade-in');
 
-    const observador = new IntersectionObserver((entradas) => {
+    const observador = new IntersectionObserver((entradas): void => {
         entradas.forEach((entrada) => {
             if (entrada.isIntersecting) {
                 entrada.target.classList.add('visivel');
